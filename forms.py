@@ -8,7 +8,7 @@ from wtforms import (
     IntegerField,
     SubmitField
 )
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired,NumberRange
 
 # Load Data
 train = pd.read_csv("data/train.csv")
@@ -46,7 +46,7 @@ class InputForm(FlaskForm):
     )
     total_stops = IntegerField(
         label="Total Stops",
-        validators=[DataRequired()]
+        validators=[NumberRange(min=0, message="Total stops must be zero or a positive number.")]
     )
     additional_info = SelectField(
         label="Additional Info"
